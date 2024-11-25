@@ -512,4 +512,7 @@ dependencies:
   - zope.interface=5.4.0=py312h5eee18b_0
   - zstandard=0.23.0=py312h2c38b39_0
   - zstd=1.5.6=hc292b87_0
+  - pip:
+      - kaggle==1.6.17
+      - kagglehub==0.3.4
 prefix: /home/crissyro/anaconda3
