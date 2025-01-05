@@ -2,10 +2,10 @@ FROM continuumio/miniconda3:latest
 
 WORKDIR /app
 
-RUN conda create -n my_environment python=3.12 -y
-RUN conda install -n my_environment -c conda-forge notebook -y
+RUN conda create -n my_env python=3.12 -y
+RUN conda install -n my_env -c conda-forge notebook -y
 
-ENV PATH=/opt/conda/envs/my_environment/bin:$PATH
+ENV PATH=/opt/conda/envs/my_env/bin:$PATH
 
 EXPOSE 8888
 
