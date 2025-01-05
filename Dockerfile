@@ -1,17 +1,16 @@
-FROM continuumio/anaconda3:2023.11
+FROM continuumio/miniconda3:latest
 
 WORKDIR /app
 
-COPY environment.yml /tmp/environment.yml
+RUN conda create -n my_environment python=3.12 -y
+RUN conda install -n my_environment -c conda-forge notebook -y
 
-RUN conda env create -f /tmp/environment.yml
-
-RUN echo "conda activate my_environment" > ~/.bashrc && \
-    conda install -n my_environment -c conda-forge notebook
+ENV PATH=/opt/conda/envs/my_environment/bin:$PATH
 
 EXPOSE 8888
 
-CMD ["bash", "-c", "source activate my_environment && jupyter notebook --ip=0.0.0.0 --no-browser --allow-root"]
+CMD ["jupyter", "notebook", "--ip=0.0.0.0", "--no-browser", "--allow-root"]
+
 
 # docker build -t anaconda-jupyter-project .
 # docker run -p 8888:8888 -v $(pwd):/app anaconda-jupyter-project
